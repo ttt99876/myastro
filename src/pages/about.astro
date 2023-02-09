@@ -1,0 +1,63 @@
+---
+    import '../styles/global.css';
+    import Footer from '../components/Footer.astro';
+    import Header from '../components/Header.astro';
+    const pageTitle = "关于我";
+    const identity = {
+        firstName: "ttt",
+        country: "中国",
+        occupation: "菜鸟程序员",
+        hobbies: ["睡觉", "爬山", "干饭"],
+    };
+
+    const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+    const happy = true;
+    const finished = false;
+    const goal = 3;
+    // 定义文字的颜色为绿色
+    // const textColor = "green"
+
+---
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+</head>
+<!-- <style define:vars={{textColor}}>
+.btext{
+    font-weight: 700;
+    color: var(--textColor);
+}
+</style> -->
+
+<body>
+    <Header />
+    <h1>{pageTitle}</h1>
+    <p class="btext">关于我的一些自我介绍:</p>
+    <ul>
+        <li>我的名字： {identity.firstName}.</li>
+        <li>我住在 {identity.country} ，我是一名 {identity.occupation}.</li>
+        {identity.hobbies.length >= 2 &&
+        <li>我的爱好: {identity.hobbies[0]} 和 {identity.hobbies[1]}</li>
+        }
+    </ul>
+    <p class="btext">我对专业技能的掌握有:</p>
+    <ul>
+        {skills.map((skill) => <li>{skill}</li>)}
+    </ul>
+    <p class="btext">条件渲染：</p>
+    <ul>
+        {happy && <li>我的爱好其实还有一个：{identity.hobbies[2]}</li>}
+        {goal===3 && <li>2023年的愿望有{goal}个</li>}
+        {<li>2023年的愿望是否都实现了？{finished?"是":"否"}</li>}
+
+    </ul>
+    <Footer />
+</body>
+
+</html>
